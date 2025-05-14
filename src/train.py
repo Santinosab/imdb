@@ -2,8 +2,9 @@ import os
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from src.data_utils import get_data_loaders
-from src.model import SentimentLSTM
+from data_utils import get_data_loaders
+from model import SentimentLSTM
+
 
 
 def binary_accuracy(preds, y):

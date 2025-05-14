@@ -66,7 +66,11 @@ def collate_batch(batch, vocab):
     return padded, lengths, labels.unsqueeze(1)
 
 # Función que prepara los DataLoaders
-def get_data_loaders(batch_size: int = 64, root_dir: str = "data/aclImdb") -> Tuple[DataLoader, DataLoader, DataLoader, torch.nn.Module, int]:
+def get_data_loaders(batch_size: int = 64, root_dir: str = None) -> Tuple[DataLoader, DataLoader, DataLoader, torch.nn.Module, int]:
+    # Usar ruta absoluta basada en la ubicación de este archivo
+    if root_dir is None:
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        root_dir = os.path.join(base_dir, "aclImdb")
     # Leer los datos
     train_samples = read_data(os.path.join(root_dir, 'train'))
     test_samples = read_data(os.path.join(root_dir, 'test'))
