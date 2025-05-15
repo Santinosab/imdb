@@ -1,0 +1,11 @@
+# Evita subir entornos virtuales, archivos temporales y otros archivos grandes o generados automáticamente
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+*.pkl
+*.pt
+*.log
+
+# Si los datos son muy grandes, puedes agregar:
+# aclImdb/
