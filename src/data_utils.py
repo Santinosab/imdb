@@ -12,6 +12,11 @@ MAX_VOCAB_SIZE = 25_000
 PAD_IDX = 0
 UNK_IDX = 1
 
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+print("Usando dispositivo:", device)
+if device.type == 'cuda':
+    print("Nombre de la GPU:", torch.cuda.get_device_name(0))
+    
 # Función para leer las reseñas
 def read_data(root_dir: str) -> Tuple[str, str]:
     """Leer reseñas desde archivos de texto en las carpetas pos/neg"""

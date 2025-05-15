@@ -33,7 +33,7 @@ def train_model(
         model.train()
         epoch_train_loss, epoch_train_acc = 0, 0
         for x, lengths, y in train_loader:
-            x, lengths, y = x.to(device), lengths.to(device), y.to(device)
+            x, lengths, y = x.to(device), lengths.cpu(), y.to(device)
             optimizer.zero_grad()
             predictions = model(x, lengths)
             loss = criterion(predictions, y)
@@ -63,7 +63,7 @@ def evaluate(model, iterator, criterion, device):
     epoch_loss, epoch_acc = 0, 0
     with torch.no_grad():
         for x, lengths, y in iterator:
-            x, lengths, y = x.to(device), lengths.to(device), y.to(device)
+            x, lengths, y = x.to(device), lengths.cpu(), y.to(device)
             predictions = model(x, lengths)
             loss = criterion(predictions, y)
             acc = binary_accuracy(predictions, y)
